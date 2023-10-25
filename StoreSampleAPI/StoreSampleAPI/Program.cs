@@ -1,6 +1,5 @@
 ﻿using StoreSampleAPI.Data;
 using Microsoft.EntityFrameworkCore;
-using StoreSampleAPI.Models;
 using StoreSampleAPI.Repository;
 using StoreSampleAPI.Repository.IRepository;
 using StoreSampleAPI;
@@ -27,7 +26,13 @@ builder.Services.AddScoped<IShipperRepository, ShipperRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder => builder
+        .WithOrigins("http://localhost:5173")
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
@@ -37,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 

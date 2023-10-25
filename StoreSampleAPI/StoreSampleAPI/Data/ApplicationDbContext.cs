@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace StoreSampleAPI.Data
 {
-	public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext : DbContext
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -20,7 +20,14 @@ namespace StoreSampleAPI.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<SalesCustomerPrediction> SalesCustomerPredictions {get;set;}
+        public DbSet<OrderInsertParameters> OrderInsertParameters { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SalesCustomerPrediction>().HasNoKey();
+            modelBuilder.Entity<OrderInsertParameters>().HasNoKey();
+        }
 
     }
 }

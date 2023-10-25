@@ -37,6 +37,7 @@ namespace StoreSampleAPI
             CreateMap<Supplier, SupplierUpdateDTO>().ReverseMap();
 
             CreateMap<OrderInsertParameters, OrderInsertParametersDTO>().ReverseMap();
+            CreateMap<SalesCustomerPrediction, SalesCustomerPredictionDTO>().ReverseMap();
         }
 	}
 }

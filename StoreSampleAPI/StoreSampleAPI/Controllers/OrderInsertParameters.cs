@@ -58,7 +58,7 @@ namespace StoreSampleAPI.Controllers
                         command.Parameters.AddWithValue("@Qty", orderInsertDTO.Qty);
                         command.Parameters.AddWithValue("@Discount", orderInsertDTO.Discount);
 
-                        await command.ExecuteNonQuery();
+                        //await command.ExecuteNonQuery();
                     }
                 }
 
